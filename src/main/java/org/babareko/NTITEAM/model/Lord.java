@@ -1,8 +1,6 @@
 package org.babareko.NTITEAM.model;
 
 import lombok.*;
-import org.babareko.NTITEAM.model.AbstractEntity;
-import org.babareko.NTITEAM.model.Planet;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
