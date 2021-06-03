@@ -1,7 +1,6 @@
-package org.babareko.NTITEAM.config;
+package org.babareko.NTITEAM.model;
 
 import lombok.*;
-import org.babareko.NTITEAM.model.AbstractEntity;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
