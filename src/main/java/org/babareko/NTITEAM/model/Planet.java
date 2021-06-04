@@ -30,6 +30,12 @@ public class Planet extends AbstractEntity implements Serializable {
     @JoinColumn(name = "lord_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Lord lord;
+
+    public Planet(Integer id, String name, Lord lord){
+        super(id);
+        this.name = name;
+        this.lord = lord;
+    }
 }
 
 

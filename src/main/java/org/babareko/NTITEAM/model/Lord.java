@@ -34,4 +34,10 @@ public class Lord extends AbstractEntity implements Serializable {
 
     @OneToMany(targetEntity = Planet.class, mappedBy = "lord", fetch = FetchType.LAZY)
     private List<Planet> planets;
+
+    public Lord(Integer id, String name, Integer age){
+        super(id);
+        this.name = name;
+        this.age = age;
+    }
 }

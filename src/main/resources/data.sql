@@ -18,20 +18,20 @@ VALUES ('Lord1', '3'),
 
 
 INSERT INTO planets (name, lord_id)
-VALUES ('Planets1', '3'),
-       ('Planets2', '3'),
-       ('Planets3', '3'),
-       ('Planets4', '2'),
-       ('Planets5', '2'),
-       ('Planets6', '1'),
-       ('Planets7', '4'),
-       ('Planets8', default),
-       ('Planets9', default),
-       ('Planets10', default),
-       ('Planets11', default),
-       ('Planets12', default),
-       ('Planets13', '7'),
-       ('Planets14', '7'),
-       ('Planets15', default);
+VALUES ('Planet1', '3'),
+       ('Planet2', '3'),
+       ('Planet3', '3'),
+       ('Planet4', '2'),
+       ('Planet5', '2'),
+       ('Planet6', '1'),
+       ('Planet7', '4'),
+       ('Planet8', default),
+       ('Planet9', default),
+       ('Planet10', default),
+       ('Planet11', default),
+       ('Planet12', default),
+       ('Planet13', '7'),
+       ('Planet14', '7'),
+       ('Planet15', default);
 
 
