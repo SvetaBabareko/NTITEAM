@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
@@ -16,7 +17,9 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Lord extends AbstractEntity {
+public class Lord extends AbstractEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @NotBlank
     @Column(name = "name", nullable = false)
     @Size(min = 1, max = 100)
@@ -27,6 +30,6 @@ public class Lord extends AbstractEntity {
     @Range(min = 0, max = 100000)
     private Integer age;
 
-    @OneToMany(targetEntity = Planet.class, mappedBy = "lords", fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = Planet.class, mappedBy = "lord", fetch = FetchType.LAZY)
     private List<Planet> planets;
 }
