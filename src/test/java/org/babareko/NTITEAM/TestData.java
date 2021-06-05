@@ -1,11 +1,24 @@
 package org.babareko.NTITEAM;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import org.apache.catalina.User;
 import org.babareko.NTITEAM.model.Lord;
 import org.babareko.NTITEAM.model.Planet;
+import org.babareko.NTITEAM.web.json.JsonUtil;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.ResultMatcher;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.function.BiConsumer;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class TestData {
+    public static TestMatcher<Planet> PLANET_MATCHER = TestMatcher.usingIgnoringFieldsComparator(Planet.class, "lord");
+    //public static ru.javaops.topjava.TestMatcher<MealTo> MEAL_TO_MATCHER = ru.javaops.topjava.TestMatcher.usingEqualsComparator(MealTo.class);
+
     public static final int Lord1_ID = 1;
     public static final Lord lord1 = new Lord(Lord1_ID, "Lord1", 3);
     public static final Lord lord2 = new Lord(Lord1_ID + 1, "lord2", 343);
@@ -46,5 +59,37 @@ public class TestData {
 
     public static final List<Planet> planetList = List.of(planet1, planet2, planet3, planet4, planet5, planet6, planet7,
             planet8, planet9, planet10, planet11, planet12, planet13, planet14, planet15);
+
+
+   /* public static void assertEquals(Planet actual, Planet expected) {
+        assertThat(actual).usingRecursiveComparison().isEqualTo(expected);
+    }
+
+    public static void assertNoIdEquals(Planet actual, Planet expected) {
+        assertThat(actual).usingRecursiveComparison().ignoringFields("id").isEqualTo(expected);
+    }
+
+    public static ResultMatcher contentJson(Planet... expected) {
+        return result -> assertMatch(TestUtil.readListFromJsonMvcResult(result, Planet.class), List.of(expected));
+    }
+
+    private static void assertMatch(List<Planet> readListFromJsonMvcResult, List<Planet> expected) {
+    }*/
+  /* public static String getContent(MvcResult result) throws UnsupportedEncodingException {
+       return result.getResponse().getContentAsString();
+   }
+
+    public static <T> T readFromJson(ResultActions action, Class<T> clazz) throws UnsupportedEncodingException {
+        return JsonUtil.readValue(getContent(action.andReturn()), clazz);
+    }
+
+    public static <T> T readFromJsonMvcResult(MvcResult result, Class<T> clazz) throws UnsupportedEncodingException {
+        return JsonUtil.readValue(getContent(result), clazz);
+    }
+
+    public static <T> List<T> readListFromJsonMvcResult(MvcResult result, Class<T> clazz) throws UnsupportedEncodingException {
+        return JsonUtil.readValues(getContent(result), clazz);
+    }*/
+
 
 }
