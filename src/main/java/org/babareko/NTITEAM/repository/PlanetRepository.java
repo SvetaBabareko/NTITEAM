@@ -24,8 +24,9 @@ public interface PlanetRepository extends JpaRepository<Planet,Integer> {
     @Query("DELETE FROM Planet d WHERE d.name=:name ")
     int deleteByName(@Param("name") String name);
 
-    Optional<Planet> getByName(String name);
+   // Optional<Planet> getByName(String name);
 
     @Query("SELECT p FROM Planet p")
     List<Planet> findAll();
+
 }
