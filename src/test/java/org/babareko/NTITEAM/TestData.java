@@ -17,24 +17,25 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class TestData {
     public static TestMatcher<Planet> PLANET_MATCHER = TestMatcher.usingIgnoringFieldsComparator(Planet.class, "lord");
+    public static TestMatcher<Lord> LORD_MATCHER = TestMatcher.usingIgnoringFieldsComparator(Lord.class, "planets");
     //public static ru.javaops.topjava.TestMatcher<MealTo> MEAL_TO_MATCHER = ru.javaops.topjava.TestMatcher.usingEqualsComparator(MealTo.class);
 
     public static final int Lord1_ID = 1;
     public static final Lord lord1 = new Lord(Lord1_ID, "Lord1", 3);
-    public static final Lord lord2 = new Lord(Lord1_ID + 1, "lord2", 343);
-    public static final Lord lord3 = new Lord(Lord1_ID + 2, "lord3", 324);
-    public static final Lord lord4 = new Lord(Lord1_ID + 3, "lord4", 23);
-    public static final Lord lord5 = new Lord(Lord1_ID + 4, "lord5", 134);
-    public static final Lord lord6 = new Lord(Lord1_ID + 5, "lord6", 13);
-    public static final Lord lord7 = new Lord(Lord1_ID + 6, "lord7", 3344);
-    public static final Lord lord8 = new Lord(Lord1_ID + 7, "lord8", 83);
-    public static final Lord lord9 = new Lord(Lord1_ID + 8, "lord9", 934);
-    public static final Lord lord10 = new Lord(Lord1_ID + 9, "lord10", 93);
-    public static final Lord lord11 = new Lord(Lord1_ID + 10, "lord11", 6374);
-    public static final Lord lord12 = new Lord(Lord1_ID + 11, "lord12", 53);
-    public static final Lord lord13 = new Lord(Lord1_ID + 12, "lord13", 6734);
-    public static final Lord lord14 = new Lord(Lord1_ID + 13, "lord14", 73);
-    public static final Lord lord15 = new Lord(Lord1_ID + 14, "lord15", 334);
+    public static final Lord lord2 = new Lord(Lord1_ID + 1, "Lord2", 343);
+    public static final Lord lord3 = new Lord(Lord1_ID + 2, "Lord3", 324);
+    public static final Lord lord4 = new Lord(Lord1_ID + 3, "Lord4", 23);
+    public static final Lord lord5 = new Lord(Lord1_ID + 4, "Lord5", 134);
+    public static final Lord lord6 = new Lord(Lord1_ID + 5, "Lord6", 13);
+    public static final Lord lord7 = new Lord(Lord1_ID + 6, "Lord7", 3344);
+    public static final Lord lord8 = new Lord(Lord1_ID + 7, "Lord8", 83);
+    public static final Lord lord9 = new Lord(Lord1_ID + 8, "Lord9", 934);
+    public static final Lord lord10 = new Lord(Lord1_ID + 9, "Lord10", 93);
+    public static final Lord lord11 = new Lord(Lord1_ID + 10, "Lord11", 6374);
+    public static final Lord lord12 = new Lord(Lord1_ID + 11, "Lord12", 53);
+    public static final Lord lord13 = new Lord(Lord1_ID + 12, "Lord13", 6734);
+    public static final Lord lord14 = new Lord(Lord1_ID + 13, "Lord14", 73);
+    public static final Lord lord15 = new Lord(Lord1_ID + 14, "Lord15", 334);
 
     public static final List<Lord> lordList = List.of(lord1, lord2, lord3, lord4, lord5, lord6, lord7,
             lord8, lord9, lord10, lord11, lord12, lord13, lord14, lord15);
