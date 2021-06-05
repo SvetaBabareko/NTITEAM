@@ -56,8 +56,7 @@ public class TestData {
     }
 
     public static Planet getUpdatedPlanet() {
-      return null;
-      //  return new Planet(MEAL1_ID, meal1.getDateTime().plus(2, ChronoUnit.MINUTES), "Обновленный завтрак", 200);
+        return new Planet(24,"Planet_updated", null);
     }
 
 

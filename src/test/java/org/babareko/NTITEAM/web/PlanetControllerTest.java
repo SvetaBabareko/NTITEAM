@@ -91,8 +91,20 @@ public class PlanetControllerTest extends AbstractControllerTest {
         Planet created = readFromJson(action, Planet.class);
         int newId = created.getId();
         newPlanet.setId(newId);
+
         PLANET_MATCHER.assertMatch(created, newPlanet);
         PLANET_MATCHER.assertMatch(planetController.getById(newId), newPlanet);
+    }
+
+    @Test
+    public void update() throws Exception {
+        Planet updated = getUpdatedPlanet();
+        perform(MockMvcRequestBuilders.put(URL + "/24")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtil.writeValue(updated)))
+                .andExpect(status().isNoContent());
+
+        PLANET_MATCHER.assertMatch(planetController.getById(24), updated);
     }
 
 

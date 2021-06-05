@@ -59,6 +59,7 @@ public class PlanetController {
 
     // Обновить запись
     @PutMapping("/{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public Planet updateNote(@PathVariable(value = "id") Integer id,
                            @Valid @RequestBody Planet planetNew) throws EntityTestNotFoundException {
 
