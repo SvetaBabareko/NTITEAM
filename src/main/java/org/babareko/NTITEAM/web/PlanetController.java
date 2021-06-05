@@ -24,12 +24,12 @@ public class PlanetController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity deleteById(@PathVariable int id) throws EntityTestNotFoundException{
+    public void delete(@PathVariable int id) throws EntityTestNotFoundException{
         log.info("delete {}", id);
         Planet planet = planetRepository.findById(id)
                 .orElseThrow(() -> new EntityTestNotFoundException(id));
         planetRepository.delete(planet);
-        return ResponseEntity.ok().build();
+       // return ResponseEntity.ok().build();
     }
 
     @GetMapping

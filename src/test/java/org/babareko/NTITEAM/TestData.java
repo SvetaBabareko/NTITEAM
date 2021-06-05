@@ -1,19 +1,9 @@
 package org.babareko.NTITEAM;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import org.apache.catalina.User;
 import org.babareko.NTITEAM.model.Lord;
 import org.babareko.NTITEAM.model.Planet;
-import org.babareko.NTITEAM.web.json.JsonUtil;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.ResultMatcher;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
-import java.util.function.BiConsumer;
-
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class TestData {
     public static TestMatcher<Planet> PLANET_MATCHER = TestMatcher.usingIgnoringFieldsComparator(Planet.class, "lord");
