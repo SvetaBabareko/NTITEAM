@@ -61,35 +61,6 @@ public class TestData {
             planet8, planet9, planet10, planet11, planet12, planet13, planet14, planet15);
 
 
-   /* public static void assertEquals(Planet actual, Planet expected) {
-        assertThat(actual).usingRecursiveComparison().isEqualTo(expected);
-    }
-
-    public static void assertNoIdEquals(Planet actual, Planet expected) {
-        assertThat(actual).usingRecursiveComparison().ignoringFields("id").isEqualTo(expected);
-    }
-
-    public static ResultMatcher contentJson(Planet... expected) {
-        return result -> assertMatch(TestUtil.readListFromJsonMvcResult(result, Planet.class), List.of(expected));
-    }
-
-    private static void assertMatch(List<Planet> readListFromJsonMvcResult, List<Planet> expected) {
-    }*/
-  /* public static String getContent(MvcResult result) throws UnsupportedEncodingException {
-       return result.getResponse().getContentAsString();
-   }
-
-    public static <T> T readFromJson(ResultActions action, Class<T> clazz) throws UnsupportedEncodingException {
-        return JsonUtil.readValue(getContent(action.andReturn()), clazz);
-    }
-
-    public static <T> T readFromJsonMvcResult(MvcResult result, Class<T> clazz) throws UnsupportedEncodingException {
-        return JsonUtil.readValue(getContent(result), clazz);
-    }
-
-    public static <T> List<T> readListFromJsonMvcResult(MvcResult result, Class<T> clazz) throws UnsupportedEncodingException {
-        return JsonUtil.readValues(getContent(result), clazz);
-    }*/
 
 
 }

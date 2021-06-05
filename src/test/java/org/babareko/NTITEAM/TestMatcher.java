@@ -5,7 +5,7 @@ import org.springframework.test.web.servlet.ResultMatcher;
 import java.util.List;
 import java.util.function.BiConsumer;
 import static org.assertj.core.api.Assertions.assertThat;
-//import static org.babareko.NTITEAM.TestUtil.readListFromJsonMvcResult;
+import static org.babareko.NTITEAM.TestUtil.readListFromJsonMvcResult;
 
 public class TestMatcher<T> {
     private final Class<T> clazz;
@@ -28,7 +28,6 @@ public class TestMatcher<T> {
                 (a, e) -> assertThat(a).isEqualTo(e));
     }
 
-
     public static <T> TestMatcher<T> usingIgnoringFieldsComparator(Class<T> clazz, String... fieldsToIgnore) {
         return new TestMatcher<>(clazz,
                 (a, e) -> assertThat(a).usingRecursiveComparison().ignoringFields(fieldsToIgnore).isEqualTo(e),
@@ -48,16 +47,16 @@ public class TestMatcher<T> {
         iterableAssertion.accept(actual, expected);
     }
 
-  /*  public ResultMatcher contentJson(T expected) {
+    public ResultMatcher contentJson(T expected) {
         return result -> assertMatch(TestUtil.readFromJsonMvcResult(result, clazz), expected);
-    }*/
+    }
 
- //   @SafeVarargs
-    //public final ResultMatcher contentJson(T... expected) {
-      //  return contentJson(List.of(expected));
-    //}
+    @SafeVarargs
+    public final ResultMatcher contentJson(T... expected) {
+        return contentJson(List.of(expected));
+    }
 
- /*   public ResultMatcher contentJson(Iterable<T> expected) {
+    public ResultMatcher contentJson(Iterable<T> expected) {
         return result -> assertMatch(readListFromJsonMvcResult(result, clazz), expected);
-    }*/
+    }
 }

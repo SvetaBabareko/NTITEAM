@@ -1,5 +1,6 @@
 package org.babareko.NTITEAM.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.validator.constraints.Range;
 
@@ -32,7 +33,9 @@ public class Lord extends AbstractEntity implements Serializable {
     @Range(min = 0, max = 100000)
     private Integer age;
 
+
     @OneToMany(targetEntity = Planet.class, mappedBy = "lord", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Planet> planets;
 
     public Lord(Integer id, String name, Integer age){

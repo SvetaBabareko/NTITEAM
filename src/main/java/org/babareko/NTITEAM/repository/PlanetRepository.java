@@ -26,7 +26,7 @@ public interface PlanetRepository extends JpaRepository<Planet,Integer> {
 
    // Optional<Planet> getByName(String name);
 
-    @Query("SELECT p FROM Planet p")
-    List<Planet> findAll();
+ //   @Query("SELECT p FROM Planet p")
+  //  List<Planet> findAll();
 
 }

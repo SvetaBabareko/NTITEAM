@@ -32,7 +32,7 @@ public class PlanetController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<Planet> getAll() {
         log.info("getAll");
         return planetRepository.findAll();

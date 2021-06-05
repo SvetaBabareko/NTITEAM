@@ -1,5 +1,7 @@
 package org.babareko.NTITEAM.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -29,6 +31,7 @@ public class Planet extends AbstractEntity implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Lord.class)
     @JoinColumn(name = "lord_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonBackReference
     private Lord lord;
 
     public Planet(Integer id, String name, Lord lord){
