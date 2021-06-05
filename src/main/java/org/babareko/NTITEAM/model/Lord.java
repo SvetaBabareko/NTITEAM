@@ -1,7 +1,12 @@
 package org.babareko.NTITEAM.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.sun.istack.Nullable;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
@@ -16,7 +21,7 @@ import java.util.List;
 @Table(name="lords")
 @Setter
 @Getter
-@ToString
+@ToString(callSuper = true, exclude = {"planets"})
 @NoArgsConstructor
 @AllArgsConstructor
 public class Lord extends AbstractEntity implements Serializable {
@@ -35,7 +40,11 @@ public class Lord extends AbstractEntity implements Serializable {
 
 
     @OneToMany(targetEntity = Planet.class, mappedBy = "lord", fetch = FetchType.LAZY)
-    @JsonManagedReference
+    //@JsonManagedReference
+   // @JsonBackReference
+    @JsonIgnore
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @Nullable
     private List<Planet> planets;
 
     public Lord(Integer id, String name, Integer age){

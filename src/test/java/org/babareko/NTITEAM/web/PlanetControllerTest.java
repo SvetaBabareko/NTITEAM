@@ -16,8 +16,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
-//@SpringBootTest
 @RunWith(SpringRunner.class)
 public class PlanetControllerTest extends AbstractControllerTest {
     static final String URL = "/test/planets";

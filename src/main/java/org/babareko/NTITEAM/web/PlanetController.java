@@ -38,7 +38,7 @@ public class PlanetController {
         return planetRepository.findAll();
     }
 
-    @PostMapping("/")
+    @PostMapping()
     public Planet create(@Valid @RequestBody Planet planet) {
         return planetRepository.save(planet);
     }

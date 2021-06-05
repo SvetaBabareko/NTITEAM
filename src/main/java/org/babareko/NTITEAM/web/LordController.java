@@ -7,6 +7,7 @@ import org.babareko.NTITEAM.repository.LordRepository;
 import org.babareko.NTITEAM.web.util.EntityTestNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -31,13 +32,13 @@ public class LordController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<Lord> getAll() {
         log.info("getAll");
         return lordRepository.findAll();
     }
 
-    @PostMapping("/")
+    @PostMapping()
     public Lord create(@Valid @RequestBody Lord lord) {
         return lordRepository.save(lord);
     }
@@ -51,7 +52,7 @@ public class LordController {
 
     // Обновить запись
     @PutMapping("/{id}")
-    public Lord updateNote(@PathVariable(value = "id") Integer id,
+    public Lord update(@PathVariable(value = "id") Integer id,
                              @Valid @RequestBody Lord lordNew) throws EntityTestNotFoundException {
 
         Lord lord = lordRepository.findById(id)
