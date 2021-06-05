@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.babareko.NTITEAM.model.Lord;
 import org.babareko.NTITEAM.repository.LordRepository;
 import org.babareko.NTITEAM.web.util.EntityTestNotFoundException;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,12 +25,12 @@ public class LordController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity deleteById(@PathVariable int id) throws EntityTestNotFoundException {
+    public void delete(@PathVariable int id) throws EntityTestNotFoundException {
         log.info("delete lord {}", id);
         Lord lord = lordRepository.findById(id)
                 .orElseThrow(() -> new EntityTestNotFoundException(id));
         lordRepository.delete(lord);
-        return ResponseEntity.ok().build();
+       // return ResponseEntity.ok().build();
     }
 
     @GetMapping
@@ -52,6 +53,7 @@ public class LordController {
 
     // Обновить запись
     @PutMapping("/{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public Lord update(@PathVariable(value = "id") Integer id,
                              @Valid @RequestBody Lord lordNew) throws EntityTestNotFoundException {
 
@@ -63,6 +65,15 @@ public class LordController {
         Lord lordUpdate = lordRepository.save(lord);
         return lordUpdate;
     }
+
+
+    @GetMapping("/top10")
+    public List<Lord> getTopByAge(){
+        log.info("getTop10 lords");
+        return lordRepository.getTopByAge(PageRequest.of(0,10));
+    }
+
+
 
 
 }

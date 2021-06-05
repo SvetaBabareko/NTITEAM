@@ -30,9 +30,6 @@ public class PlanetControllerTest extends AbstractControllerTest {
     @Autowired
     private PlanetController planetController;
 
-    @Autowired
-    private PlanetRepository planetRepository;
-
     @Test
     public void getAll() throws Exception {
         perform(MockMvcRequestBuilders.get(URL + "/"))

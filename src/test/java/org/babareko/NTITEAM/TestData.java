@@ -30,6 +30,7 @@ public class TestData {
     public static final List<Lord> lordList = List.of(lord1, lord2, lord3, lord4, lord5, lord6, lord7,
             lord8, lord9, lord10, lord11, lord12, lord13, lord14, lord15);
 
+    public static final List<Lord> lordListTop10 = List.of(lord1, lord6, lord4, lord12, lord14, lord8, lord10, lord5, lord3, lord15);
 
     public static final int planet1_ID = 16;
     public static final Planet planet1 = new Planet(planet1_ID, "Planet1", lord3);
@@ -56,7 +57,15 @@ public class TestData {
     }
 
     public static Planet getUpdatedPlanet() {
-        return new Planet(24,"Planet_updated", null);
+        return new Planet(24, "Planet_updated", null);
+    }
+
+    public static Lord getNewLord() {
+        return new Lord(16, "Lord_new", 123);
+    }
+
+    public static Lord getUpdatedLord() {
+        return new Lord(5, "Lord_updated", 1);
     }
 
 
