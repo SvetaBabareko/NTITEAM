@@ -1,5 +1,6 @@
 package org.babareko.NTITEAM.web;
 
+import org.babareko.NTITEAM.TestData;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.http.MediaType;
@@ -23,5 +24,14 @@ public class LordControllerTest extends AbstractControllerTest{
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(LORD_MATCHER.contentJson(lord5));
+    }
+
+    @Test
+    public void getAll() throws Exception {
+        perform(MockMvcRequestBuilders.get(URL+"/"))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(LORD_MATCHER.contentJson(lordList));
     }
 }
