@@ -60,7 +60,7 @@ public class PlanetController {
         planet.setName(planetNew.getName());
         planet.setLord(planetNew.getLord());
 
-        Planet updatedBook = planetRepository.save(planet);
-        return updatedBook;
+        Planet planetUpdate = planetRepository.save(planet);
+        return planetUpdate;
     }
 }
