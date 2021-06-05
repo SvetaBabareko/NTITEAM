@@ -9,8 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -38,9 +40,14 @@ public class PlanetController {
         return planetRepository.findAll();
     }
 
-    @PostMapping()
-    public Planet create(@Valid @RequestBody Planet planet) {
-        return planetRepository.save(planet);
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Planet> create(@Valid @RequestBody Planet planet) {
+        //return planetRepository.save(planet);
+        Planet created = planetRepository.save(planet);
+        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path(URL + "/{id}")
+                .buildAndExpand(created.getId()).toUri();
+        return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
     // Получить запись по id

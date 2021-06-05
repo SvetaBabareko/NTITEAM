@@ -2,18 +2,21 @@ package org.babareko.NTITEAM.web;
 
 
 import org.babareko.NTITEAM.TestData;
+import org.babareko.NTITEAM.model.Planet;
 import org.babareko.NTITEAM.repository.PlanetRepository;
+import org.babareko.NTITEAM.web.json.JsonUtil;
 import org.babareko.NTITEAM.web.util.EntityTestNotFoundException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.web.util.NestedServletException;
 
-import static org.babareko.NTITEAM.TestData.PLANET_MATCHER;
-import static org.babareko.NTITEAM.TestData.planet10;
+import static org.babareko.NTITEAM.TestData.*;
+import static org.babareko.NTITEAM.TestUtil.readFromJson;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -42,11 +45,11 @@ public class PlanetControllerTest extends AbstractControllerTest {
 
     @Test
     public void get() throws Exception {
-        perform(MockMvcRequestBuilders.get(URL + "/25"))
+        perform(MockMvcRequestBuilders.get(URL + "/24"))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(PLANET_MATCHER.contentJson(planet10));
+                .andExpect(PLANET_MATCHER.contentJson(planet9));
     }
 
     @Test
@@ -68,6 +71,28 @@ public class PlanetControllerTest extends AbstractControllerTest {
                 .andExpect(status().isNoContent());
         Throwable exception = assertThrows(EntityTestNotFoundException.class, () -> planetController.getById(25));
         assertEquals("Entity is not found with id : '25'", exception.getMessage());
+    }
+
+    @Test
+    public void deleteNotFound() throws Exception{
+        assertThrows(NestedServletException.class, () -> perform(MockMvcRequestBuilders.delete(URL + "/2")));
+
+        Throwable exception = assertThrows(EntityTestNotFoundException.class, () -> planetController.getById(2));
+        assertEquals("Entity is not found with id : '2'", exception.getMessage());
+    }
+
+    @Test
+    public void create() throws Exception {
+        Planet newPlanet = getNewPlanet();
+        ResultActions action = perform(MockMvcRequestBuilders.post(URL+"/")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtil.writeValue(newPlanet)))
+                .andExpect(status().isCreated());
+        Planet created = readFromJson(action, Planet.class);
+        int newId = created.getId();
+        newPlanet.setId(newId);
+        PLANET_MATCHER.assertMatch(created, newPlanet);
+        PLANET_MATCHER.assertMatch(planetController.getById(newId), newPlanet);
     }
 
 

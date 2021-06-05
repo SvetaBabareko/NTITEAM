@@ -51,7 +51,14 @@ public class TestData {
     public static final List<Planet> planetList = List.of(planet1, planet2, planet3, planet4, planet5, planet6, planet7,
             planet8, planet9, planet10, planet11, planet12, planet13, planet14, planet15);
 
+    public static Planet getNewPlanet() {
+        return new Planet(planet1_ID + 14, "Planet16", lord5);
+    }
 
+    public static Planet getUpdatedPlanet() {
+      return null;
+      //  return new Planet(MEAL1_ID, meal1.getDateTime().plus(2, ChronoUnit.MINUTES), "Обновленный завтрак", 200);
+    }
 
 
 }
