@@ -21,10 +21,10 @@ public interface LordRepository extends JpaRepository<Lord, Integer> {
     int deleteByName(String name);
     */
 
-    @Query("SELECT l FROM Lord l ")
-    List<Lord> getAll();
+  //  @Query("SELECT l FROM Lord l ")
+  //  List<Lord> getAll();
 
-    Lord getByName(String name);
+   // Lord getByName(String name);
 
     List<Lord> getAllByPlanetsIsNull();
 

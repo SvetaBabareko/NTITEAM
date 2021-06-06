@@ -84,6 +84,7 @@ public class PlanetControllerTest extends AbstractControllerTest {
         ResultActions action = perform(MockMvcRequestBuilders.post(URL+"/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(newPlanet)))
+                .andDo(print())
                 .andExpect(status().isCreated());
         Planet created = readFromJson(action, Planet.class);
         int newId = created.getId();

@@ -1,8 +1,6 @@
 package org.babareko.NTITEAM.web;
 
-import org.babareko.NTITEAM.TestData;
 import org.babareko.NTITEAM.model.Lord;
-import org.babareko.NTITEAM.model.Planet;
 import org.babareko.NTITEAM.web.json.JsonUtil;
 import org.babareko.NTITEAM.web.util.EntityTestNotFoundException;
 import org.junit.Test;
@@ -13,8 +11,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.web.util.NestedServletException;
-
-import static org.babareko.NTITEAM.TestData.lord5;
 
 import static org.babareko.NTITEAM.TestData.*;
 import static org.babareko.NTITEAM.TestUtil.readFromJson;
@@ -86,7 +82,7 @@ public class LordControllerTest extends AbstractControllerTest{
         newLord.setId(newId);
 
         LORD_MATCHER.assertMatch(created, newLord);
-       // LORD_MATCHER.assertMatch(lordController.getById(newId), newLord);
+        LORD_MATCHER.assertMatch(lordController.getById(newId), newLord);
     }
 
 

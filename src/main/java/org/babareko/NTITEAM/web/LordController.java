@@ -3,15 +3,19 @@ package org.babareko.NTITEAM.web;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.babareko.NTITEAM.model.Lord;
+import org.babareko.NTITEAM.model.Planet;
 import org.babareko.NTITEAM.repository.LordRepository;
 import org.babareko.NTITEAM.web.util.EntityTestNotFoundException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -39,9 +43,13 @@ public class LordController {
         return lordRepository.findAll();
     }
 
-    @PostMapping()
-    public Lord create(@Valid @RequestBody Lord lord) {
-        return lordRepository.save(lord);
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Lord> create(@Valid @RequestBody Lord lord) {
+        Lord created = lordRepository.save(lord);
+        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path(URL + "/{id}")
+                .buildAndExpand(created.getId()).toUri();
+        return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
     // Получить запись по id

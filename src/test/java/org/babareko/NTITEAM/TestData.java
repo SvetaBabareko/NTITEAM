@@ -53,7 +53,7 @@ public class TestData {
             planet8, planet9, planet10, planet11, planet12, planet13, planet14, planet15);
 
     public static Planet getNewPlanet() {
-        return new Planet(planet1_ID + 14, "Planet16", lord5);
+        return new Planet(null, "Planet16", lord5);
     }
 
     public static Planet getUpdatedPlanet() {
@@ -61,7 +61,7 @@ public class TestData {
     }
 
     public static Lord getNewLord() {
-        return new Lord(16, "Lord_new", 123);
+        return new Lord(null, "Lord_new", 123);
     }
 
     public static Lord getUpdatedLord() {
