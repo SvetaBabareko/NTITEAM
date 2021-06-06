@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "server.servlet.encoding.jackson.visibility.field",
+      "type": "java.lang.String",
+      "description": "Description for server.servlet.encoding.jackson.visibility.field."
+    }
+  ] }

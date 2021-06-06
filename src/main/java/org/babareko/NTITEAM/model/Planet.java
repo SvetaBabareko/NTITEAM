@@ -1,8 +1,6 @@
 package org.babareko.NTITEAM.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -17,7 +15,7 @@ import java.io.Serializable;
 @Table(name = "planets")
 @Setter
 @Getter
-@ToString
+@ToString(callSuper = true, exclude = {"lord"})
 @NoArgsConstructor
 @AllArgsConstructor
 public class Planet extends AbstractEntity implements Serializable {
@@ -29,11 +27,10 @@ public class Planet extends AbstractEntity implements Serializable {
     @Size(min = 1, max = 100)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Lord.class)
-    @JoinColumn(name = "lord_id", nullable = true)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Lord.class)
+    @JoinColumn(name = "lord_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonBackReference
-    //@JsonManagedReference
     private Lord lord;
 
     public Planet(Integer id, String name, Lord lord) {

@@ -3,12 +3,12 @@ package org.babareko.NTITEAM;
 import org.babareko.NTITEAM.model.Lord;
 import org.babareko.NTITEAM.model.Planet;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TestData {
     public static TestMatcher<Planet> PLANET_MATCHER = TestMatcher.usingIgnoringFieldsComparator(Planet.class, "lord");
     public static TestMatcher<Lord> LORD_MATCHER = TestMatcher.usingIgnoringFieldsComparator(Lord.class, "planets");
-    //public static ru.javaops.topjava.TestMatcher<MealTo> MEAL_TO_MATCHER = ru.javaops.topjava.TestMatcher.usingEqualsComparator(MealTo.class);
 
     public static final int Lord1_ID = 1;
     public static final Lord lord1 = new Lord(Lord1_ID, "Lord1", 3);
@@ -32,7 +32,7 @@ public class TestData {
 
     public static final List<Lord> lordListTop10 = List.of(lord1, lord6, lord4, lord12, lord14, lord8, lord10, lord5, lord3, lord15);
 
-    public static final List<Lord> freeLordsList = List.of(lord5, lord6, lord8,lord9,lord10, lord11, lord12, lord13, lord14, lord15);
+    public static final List<Lord> freeLordsList = List.of(lord5, lord6, lord8, lord9, lord10, lord11, lord12, lord13, lord14, lord15);
 
     public static final int planet1_ID = 16;
     public static final Planet planet1 = new Planet(planet1_ID, "Planet1", lord3);
@@ -70,5 +70,16 @@ public class TestData {
         return new Lord(5, "Lord_updated", 1);
     }
 
+    public static Lord getUpdatedPlanetLord1() {
+        Lord lordUpdate = new Lord(4, "Lord4", 23);
+        Planet planetUpdate = new Planet(planet1_ID + 7, "Planet8", lordUpdate);
+        lordUpdate.setPlanets(List.of(planet7, planetUpdate));
+        return lordUpdate;
+    }
 
+    public static Lord getUpdatedPlanetLord2() {
+        Lord lordUpdate = new Lord(10, "Lord10", 93);
+        lordUpdate.setPlanets(List.of(planet12));
+        return lordUpdate;
+    }
 }

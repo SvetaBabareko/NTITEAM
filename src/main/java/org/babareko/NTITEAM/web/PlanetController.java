@@ -26,23 +26,22 @@ public class PlanetController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable int id) throws EntityTestNotFoundException{
-        log.info("delete {}", id);
+    public void delete(@PathVariable int id) throws EntityTestNotFoundException {
+        log.info("delete planet {}", id);
         Planet planet = planetRepository.findById(id)
                 .orElseThrow(() -> new EntityTestNotFoundException(id));
         planetRepository.delete(planet);
-       // return ResponseEntity.ok().build();
     }
 
     @GetMapping
     public List<Planet> getAll() {
-        log.info("getAll");
+        log.info("get all planets");
         return planetRepository.findAll();
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Planet> create(@Valid @RequestBody Planet planet) {
-        //return planetRepository.save(planet);
+        log.info("create planet {}", planet);
         Planet created = planetRepository.save(planet);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(URL + "/{id}")
@@ -50,25 +49,22 @@ public class PlanetController {
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
-    // Получить запись по id
     @GetMapping("/{id}")
     public Planet getById(@PathVariable(value = "id") Integer id) throws EntityTestNotFoundException {
+        log.info("get planet {}", id);
         return planetRepository.findById(id)
                 .orElseThrow(() -> new EntityTestNotFoundException(id));
     }
 
-    // Обновить запись
     @PutMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public Planet update(@PathVariable(value = "id") Integer id,
-                           @Valid @RequestBody Planet planetNew) throws EntityTestNotFoundException {
-
+                         @Valid @RequestBody Planet planetNew) throws EntityTestNotFoundException {
+        log.info("update planet {}: {}", id, planetNew);
         Planet planet = planetRepository.findById(id)
                 .orElseThrow(() -> new EntityTestNotFoundException(id));
         planet.setName(planetNew.getName());
         planet.setLord(planetNew.getLord());
-
-        Planet planetUpdate = planetRepository.save(planet);
-        return planetUpdate;
+        return planetRepository.save(planet);
     }
 }

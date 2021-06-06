@@ -5,12 +5,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.babareko.NTITEAM.model.Lord;
 import org.babareko.NTITEAM.model.Planet;
 import org.babareko.NTITEAM.repository.LordRepository;
+import org.babareko.NTITEAM.repository.PlanetRepository;
 import org.babareko.NTITEAM.web.util.EntityTestNotFoundException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -26,6 +26,7 @@ public class LordController {
     static final String URL = "/test/lords";
 
     private final LordRepository lordRepository;
+    private final PlanetRepository planetRepository;
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -38,13 +39,13 @@ public class LordController {
 
     @GetMapping
     public List<Lord> getAll() {
-        log.info("getAll lords");
+        log.info("get all lords");
         return lordRepository.findAll();
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Lord> create(@Valid @RequestBody Lord lord) {
-        log.info("create lord");
+        log.info("create lord {}", lord);
         Lord created = lordRepository.save(lord);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(URL + "/{id}")
@@ -52,43 +53,43 @@ public class LordController {
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
-    // Получить запись по id
     @GetMapping("/{id}")
     public Lord getById(@PathVariable(value = "id") Integer id) throws EntityTestNotFoundException {
-        log.info("get lord by id");
+        log.info("get lord {}", id);
         return lordRepository.findById(id)
                 .orElseThrow(() -> new EntityTestNotFoundException(id));
     }
 
-    // Обновить запись
     @PutMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public Lord update(@PathVariable(value = "id") Integer id,
-                             @Valid @RequestBody Lord lordNew) throws EntityTestNotFoundException {
-        log.info("update lord");
+                       @Valid @RequestBody Lord lordNew) throws EntityTestNotFoundException {
+        log.info("update lord {}: {}", id, lordNew);
         Lord lord = lordRepository.findById(id)
                 .orElseThrow(() -> new EntityTestNotFoundException(id));
         lord.setName(lordNew.getName());
         lord.setAge(lordNew.getAge());
-
-        Lord lordUpdate = lordRepository.save(lord);
-        return lordUpdate;
+        lord.setPlanets(lordNew.getPlanets());
+        if (lordNew.getPlanets() != null) {
+            for (Planet p : lordNew.getPlanets()) {
+                p.setLord(lordNew);
+                planetRepository.save(p);
+            }
+        }
+        return lordRepository.save(lord);
     }
 
-
     @GetMapping("/top10")
-    public List<Lord> getTopByAge(){
+    public List<Lord> getTopByAge() {
         log.info("get Top10 lords");
-        return lordRepository.getTopByAge(PageRequest.of(0,10));
+        return lordRepository.getTopByAge(PageRequest.of(0, 10));
     }
 
     @GetMapping("/listFreeLords")
-    public List<Lord> getAllByPlanetsIsNull(){
+    public List<Lord> getAllByPlanetsIsNull() {
         log.info("get free lords");
         return lordRepository.getAllByPlanetsIsNull();
     }
-
-
 
 
 }

@@ -1,7 +1,5 @@
 package org.babareko.NTITEAM.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.Nullable;
 import lombok.*;
@@ -39,10 +37,8 @@ public class Lord extends AbstractEntity implements Serializable {
     private Integer age;
 
 
-    @OneToMany(targetEntity = Planet.class, mappedBy = "lord", fetch = FetchType.LAZY)
-    //@JsonManagedReference
-   // @JsonBackReference
-    @JsonIgnore
+    @OneToMany(targetEntity = Planet.class, mappedBy = "lord", fetch = FetchType.EAGER)
+    @JsonManagedReference
     @OnDelete(action = OnDeleteAction.CASCADE)
     @Nullable
     private List<Planet> planets;
