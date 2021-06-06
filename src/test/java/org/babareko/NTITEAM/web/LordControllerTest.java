@@ -107,4 +107,15 @@ public class LordControllerTest extends AbstractControllerTest{
                 .andExpect(LORD_MATCHER.contentJson(lordListTop10));
     }
 
+    @Test
+    public void getFreeLords() throws Exception {
+        perform(MockMvcRequestBuilders.get(URL+"/listFreeLords"))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(LORD_MATCHER.contentJson(freeLordsList));
+    }
+
+
+
 }

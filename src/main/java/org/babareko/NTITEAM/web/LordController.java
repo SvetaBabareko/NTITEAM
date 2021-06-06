@@ -34,17 +34,17 @@ public class LordController {
         Lord lord = lordRepository.findById(id)
                 .orElseThrow(() -> new EntityTestNotFoundException(id));
         lordRepository.delete(lord);
-       // return ResponseEntity.ok().build();
     }
 
     @GetMapping
     public List<Lord> getAll() {
-        log.info("getAll");
+        log.info("getAll lords");
         return lordRepository.findAll();
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Lord> create(@Valid @RequestBody Lord lord) {
+        log.info("create lord");
         Lord created = lordRepository.save(lord);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(URL + "/{id}")
@@ -55,6 +55,7 @@ public class LordController {
     // Получить запись по id
     @GetMapping("/{id}")
     public Lord getById(@PathVariable(value = "id") Integer id) throws EntityTestNotFoundException {
+        log.info("get lord by id");
         return lordRepository.findById(id)
                 .orElseThrow(() -> new EntityTestNotFoundException(id));
     }
@@ -64,7 +65,7 @@ public class LordController {
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public Lord update(@PathVariable(value = "id") Integer id,
                              @Valid @RequestBody Lord lordNew) throws EntityTestNotFoundException {
-
+        log.info("update lord");
         Lord lord = lordRepository.findById(id)
                 .orElseThrow(() -> new EntityTestNotFoundException(id));
         lord.setName(lordNew.getName());
@@ -77,8 +78,14 @@ public class LordController {
 
     @GetMapping("/top10")
     public List<Lord> getTopByAge(){
-        log.info("getTop10 lords");
+        log.info("get Top10 lords");
         return lordRepository.getTopByAge(PageRequest.of(0,10));
+    }
+
+    @GetMapping("/listFreeLords")
+    public List<Lord> getAllByPlanetsIsNull(){
+        log.info("get free lords");
+        return lordRepository.getAllByPlanetsIsNull();
     }
 
 

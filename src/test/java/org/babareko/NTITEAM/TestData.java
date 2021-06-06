@@ -32,6 +32,8 @@ public class TestData {
 
     public static final List<Lord> lordListTop10 = List.of(lord1, lord6, lord4, lord12, lord14, lord8, lord10, lord5, lord3, lord15);
 
+    public static final List<Lord> freeLordsList = List.of(lord5, lord6, lord8,lord9,lord10, lord11, lord12, lord13, lord14, lord15);
+
     public static final int planet1_ID = 16;
     public static final Planet planet1 = new Planet(planet1_ID, "Planet1", lord3);
     public static final Planet planet2 = new Planet(planet1_ID + 1, "Planet2", lord3);
