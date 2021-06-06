@@ -35,20 +35,20 @@
 - Написать тест на Selenium, который будет проверять работу интерфейса.
 
 _________________________________________
-<h3> Lord </h3> - сущность Повелитель
+<h3> Lord </h3>
 
-GET /test/lords (get all lords)
-GET /test/lords/{id} (get a lord)
-GET /test/lords/top10 (get the top 10 young lords)
-GET /test/lords/listFreeLords (get the free lords)
-POST /test/lords (create a new lord)
-PUT /test/lords/{id} (update a lord)
-DELETE /test/lords/{id} (delete a lord)
+- GET /test/lords (get all lords)
+- GET /test/lords/{id} (get a lord)
+- GET /test/lords/top10 (get the top 10 young lords)
+- GET /test/lords/listFreeLords (get the free lords)
+- POST /test/lords (create a new lord)
+- PUT /test/lords/{id} (update a lord)
+- DELETE /test/lords/{id} (delete a lord)
 
 <h3> Planet </h3> 
 
-GET /test/planets (get all planets)
-GET /test/planets/{id} (get a planet)
-POST /test/planets (create a new planet)
-PUT /test/planets/{id} (update a planet)
-DELETE /test/planets/{id} (delete a planet)
+- GET /test/planets (get all planets)
+- GET /test/planets/{id} (get a planet)
+- POST /test/planets (create a new planet)
+- PUT /test/planets/{id} (update a planet)
+- DELETE /test/planets/{id} (delete a planet)
