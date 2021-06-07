@@ -28,9 +28,4 @@ public class TestUtil {
         return JsonUtil.readValues(getContent(result), clazz);
     }
 
-
-    // public static RequestPostProcessor userHttpBasic(User user) {
-   //     return SecurityMockMvcRequestPostProcessors.httpBasic(user.getEmail(), user.getPassword());
-   // }
-
 }
